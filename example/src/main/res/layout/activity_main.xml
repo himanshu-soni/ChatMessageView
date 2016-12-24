@@ -1,19 +1,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
-
-    <ListView
-        android:id="@+id/listView"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/send_message_layout"
-        android:divider="@null" />
+        android:clipToPadding="false"
+        android:divider="@null"
+        android:paddingTop="8dp" />
 
     <LinearLayout
         android:id="@+id/send_message_layout"
@@ -28,13 +27,18 @@
             android:id="@+id/iv_image"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_launcher" />
+            android:alpha=".5"
+            android:background="?selectableItemBackground"
+            android:contentDescription="@string/app_name"
+            android:padding="2dp"
+            android:src="@drawable/ic_photo_black_24dp" />
 
         <EditText
             android:id="@+id/et_message"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:inputType="text" />
 
         <Button
             android:id="@+id/btn_send"

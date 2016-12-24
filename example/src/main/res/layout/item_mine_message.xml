@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="3dp">
 
@@ -14,16 +14,43 @@
         app:cmv_arrowPosition="right"
         app:cmv_backgroundColor="#88BABABA"
         app:cmv_backgroundColorPressed="#FFBABABA"
-        app:cmv_contentPadding="10dp"
+        app:cmv_contentPadding="0dp"
         app:cmv_cornerRadius="3dp"
         app:cmv_showArrow="true">
 
-        <TextView
-            android:id="@+id/text"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-    </me.himanshusoni.chatmessageview.ChatMessageView>
+            android:orientation="vertical"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="8dp">
 
+            <ImageView
+                android:id="@+id/iv_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="#aaffffff"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/img_sample" />
+
+            <TextView
+                android:id="@+id/tv_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hello_world"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginBottom="8dp"
+                android:text="@string/app_name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </me.himanshusoni.chatmessageview.ChatMessageView>
 </LinearLayout>

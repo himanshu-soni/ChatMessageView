@@ -1,6 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
 
 ext {
     bintrayRepo = 'maven'
@@ -15,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/himanshu-soni/ChatMessageView'
     gitUrl = 'https://github.com/himanshu-soni/ChatMessageView.git'
 
-    libraryVersion = '1.0.4'
+    libraryVersion = '1.0.5'
 
     developerId = 'himanshu-soni'
     developerName = 'Himanshu Soni'
@@ -27,15 +25,15 @@ ext {
 }
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.0"
 //    resourcePrefix "cmv_"
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 23
-        versionCode 4
-        versionName "1.0.4"
+        targetSdkVersion 25
+        versionCode 5
+        versionName "1.0.5"
     }
     buildTypes {
         release {
@@ -45,11 +43,11 @@ android {
     }
 }
 
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+apply from: 'https://raw.githubusercontent.com/himanshu-soni/QuantityView/master/install.gradle'
+apply from: 'https://raw.githubusercontent.com/himanshu-soni/QuantityView/master/bintray.gradle'
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:support-annotations:23.1.1'
-    compile 'com.android.support:support-v4:23.1.1'
+    compile 'com.android.support:support-annotations:25.1.0'
+    compile 'com.android.support:support-v4:25.1.0'
 }

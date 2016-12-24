@@ -1,69 +1,90 @@
 package me.himanshusoni.chatmessageview.example;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by himanshusoni on 06/09/15.
+ *
  */
-public class ChatMessageAdapter extends ArrayAdapter<ChatMessage> {
-    private static final int MY_MESSAGE = 0, OTHER_MESSAGE = 1, MY_IMAGE = 2, OTHER_IMAGE = 3;
+public class ChatMessageAdapter extends RecyclerView.Adapter<ChatMessageAdapter.MessageHolder> {
+    private static final int MY_MESSAGE = 0, OTHER_MESSAGE = 1;
+
+    private List<ChatMessage> mMessages;
+    private Context mContext;
 
     public ChatMessageAdapter(Context context, List<ChatMessage> data) {
-        super(context, R.layout.item_mine_message, data);
+        mContext = context;
+        mMessages = data;
     }
 
     @Override
-    public int getViewTypeCount() {
-        // my message, other message, my image, other image
-        return 4;
+    public int getItemCount() {
+        return mMessages == null ? 0 : mMessages.size();
     }
 
     @Override
     public int getItemViewType(int position) {
-        ChatMessage item = getItem(position);
+        ChatMessage item = mMessages.get(position);
 
-        if (item.isMine() && !item.isImage()) return MY_MESSAGE;
-        else if (!item.isMine() && !item.isImage()) return OTHER_MESSAGE;
-        else if (item.isMine() && item.isImage()) return MY_IMAGE;
-        else return OTHER_IMAGE;
+        if (item.isMine()) return MY_MESSAGE;
+        else return OTHER_MESSAGE;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        int viewType = getItemViewType(position);
+    public MessageHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == MY_MESSAGE) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_mine_message, parent, false);
-
-            TextView textView = (TextView) convertView.findViewById(R.id.text);
-            textView.setText(getItem(position).getContent());
-
-        } else if (viewType == OTHER_MESSAGE) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_other_message, parent, false);
-
-            TextView textView = (TextView) convertView.findViewById(R.id.text);
-            textView.setText(getItem(position).getContent());
-        } else if (viewType == MY_IMAGE) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_mine_image, parent, false);
+            return new MessageHolder(LayoutInflater.from(mContext).inflate(R.layout.item_mine_message, parent, false));
         } else {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_other_image, parent, false);
+            return new MessageHolder(LayoutInflater.from(mContext).inflate(R.layout.item_other_message, parent, false));
+        }
+    }
+
+    public void add(ChatMessage message) {
+        mMessages.add(message);
+        notifyItemInserted(mMessages.size() - 1);
+    }
+
+    @Override
+    public void onBindViewHolder(MessageHolder holder, int position) {
+        ChatMessage chatMessage = mMessages.get(position);
+        if (chatMessage.isImage()) {
+            holder.ivImage.setVisibility(View.VISIBLE);
+            holder.tvMessage.setVisibility(View.GONE);
+
+            holder.ivImage.setImageResource(R.drawable.img_sample);
+        } else {
+            holder.ivImage.setVisibility(View.GONE);
+            holder.tvMessage.setVisibility(View.VISIBLE);
+
+            holder.tvMessage.setText(chatMessage.getContent());
         }
 
-        convertView.findViewById(R.id.chatMessageView).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "onClick", Toast.LENGTH_LONG).show();
-            }
-        });
+        String date = new SimpleDateFormat("hh:mm aa", Locale.getDefault()).format(new Date());
+        holder.tvTime.setText(date);
 
 
-        return convertView;
+    }
+
+    class MessageHolder extends RecyclerView.ViewHolder {
+        TextView tvMessage, tvTime;
+        ImageView ivImage;
+
+        MessageHolder(View itemView) {
+            super(itemView);
+            tvMessage = (TextView) itemView.findViewById(R.id.tv_message);
+            tvTime = (TextView) itemView.findViewById(R.id.tv_time);
+            ivImage = (ImageView) itemView.findViewById(R.id.iv_image);
+        }
     }
 }
