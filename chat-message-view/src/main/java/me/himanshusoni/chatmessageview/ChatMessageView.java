@@ -70,6 +70,18 @@ public class ChatMessageView extends RelativeLayout {
         initContent();
     }
 
+    public boolean isShowArrow() {
+        return showArrow;
+    }
+
+    public void setShowArrow(boolean showArrow) {
+        this.showArrow = showArrow;
+        if (!showArrow) {
+            arrowImage.setVisibility(INVISIBLE);
+        } else {
+            arrowImage.setVisibility(VISIBLE);
+        }
+    }
 
     public void setArrowPosition(ArrowPosition position) {
         arrowPosition = position;
