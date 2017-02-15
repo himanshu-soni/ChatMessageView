@@ -1,5 +1,6 @@
 package me.himanshusoni.chatmessageview.example;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -104,6 +105,10 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        } else if (id == R.id.action_single_view) {
+            Intent intent = new Intent(this, SingleViewActivity.class);
+            startActivity(intent);
             return true;
         }
 

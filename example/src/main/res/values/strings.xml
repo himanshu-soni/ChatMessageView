@@ -3,4 +3,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string name="single_view">Single View</string>
+    <string name="title_activity_single_view">SingleViewActivity</string>
 </resources>

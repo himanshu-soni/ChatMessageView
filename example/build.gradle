@@ -8,8 +8,8 @@ android {
         applicationId "me.himanshusoni.chatmessageview.example"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 6
-        versionName "1.0.6"
+        versionCode 7
+        versionName "1.0.7"
     }
     buildTypes {
         release {
@@ -21,8 +21,9 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:25.1.1'
-    compile 'com.android.support:recyclerview-v7:25.1.1'
     //    compile 'me.himanshusoni.chatmessageview:chat-message-view:1.0.3'
     compile project(':chat-message-view')
+    compile 'com.android.support:appcompat-v7:25.1.1'
+    compile 'com.android.support:recyclerview-v7:25.1.1'
+    compile 'com.android.support:design:25.1.1'
 }

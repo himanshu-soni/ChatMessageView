@@ -16,6 +16,7 @@ import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -109,6 +110,11 @@ public class ChatMessageView extends RelativeLayout {
         params.addRule(BELOW, 0);
         params.addRule(ABOVE, 0);
         params.addRule(LEFT_OF, 0);
+
+        params.addRule(ALIGN_BOTTOM, 0);
+        params.addRule(ALIGN_TOP, 0);
+        params.addRule(ALIGN_LEFT, 0);
+        params.addRule(ALIGN_RIGHT, 0);
     }
 
 
@@ -131,7 +137,7 @@ public class ChatMessageView extends RelativeLayout {
             }
             case BOTTOM: {
                 arrowRotation = 90;
-                arrowParams.addRule(ALIGN_PARENT_BOTTOM, TRUE);
+                //arrowParams.addRule(ALIGN_PARENT_BOTTOM, TRUE);
                 arrowParams.setMargins((int) arrowMargin, 0, (int) arrowMargin, 0);
 
                 arrowParams.addRule(BELOW, containerLayout.getId());
@@ -149,12 +155,12 @@ public class ChatMessageView extends RelativeLayout {
             }
             default: {
                 arrowRotation = 0;
-                arrowParams.addRule(ALIGN_PARENT_RIGHT, TRUE);
-//                containerParams.addRule(ALIGN_PARENT_LEFT, TRUE);
+                //arrowParams.addRule(ALIGN_PARENT_RIGHT, TRUE);
+                containerParams.addRule(ALIGN_PARENT_LEFT, TRUE);
                 arrowParams.setMargins(0, (int) arrowMargin, 0, (int) arrowMargin);
 
-                containerParams.addRule(LEFT_OF, arrowImage.getId());
-//                arrowParams.addRule(RIGHT_OF, containerLayout.getId());
+                //containerParams.addRule(LEFT_OF, arrowImage.getId());
+                arrowParams.addRule(RIGHT_OF, containerLayout.getId());
                 break;
             }
         }
@@ -162,9 +168,9 @@ public class ChatMessageView extends RelativeLayout {
         switch (arrowGravity) {
             case START:
                 if (arrowPosition == ArrowPosition.TOP || arrowPosition == ArrowPosition.BOTTOM) {
-                    arrowParams.addRule(ALIGN_PARENT_LEFT, TRUE);
+                    arrowParams.addRule(ALIGN_LEFT, containerLayout.getId());
                 } else {
-                    arrowParams.addRule(ALIGN_PARENT_TOP, TRUE);
+                    arrowParams.addRule(ALIGN_TOP, containerLayout.getId());
                 }
                 break;
             case CENTER:
@@ -176,9 +182,9 @@ public class ChatMessageView extends RelativeLayout {
                 break;
             case END:
                 if (arrowPosition == ArrowPosition.TOP || arrowPosition == ArrowPosition.BOTTOM) {
-                    arrowParams.addRule(ALIGN_PARENT_RIGHT, TRUE);
+                    arrowParams.addRule(ALIGN_RIGHT, containerLayout.getId());
                 } else {
-                    arrowParams.addRule(ALIGN_PARENT_BOTTOM, TRUE);
+                    arrowParams.addRule(ALIGN_BOTTOM, containerLayout.getId());
                 }
                 break;
             default:
@@ -243,8 +249,8 @@ public class ChatMessageView extends RelativeLayout {
         setShowArrow(showArrow);
         setContentPadding((int) contentPadding);
 
-        super.addView(arrowImage);
-        super.addView(containerLayout);
+        super.addView(arrowImage, new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        super.addView(containerLayout, new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
         updatePositionAndGravity();
 

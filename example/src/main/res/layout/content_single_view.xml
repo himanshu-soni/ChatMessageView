@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_single_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="me.himanshusoni.chatmessageview.example.SingleViewActivity"
+    tools:showIn="@layout/activity_single_view">
+
+    <me.himanshusoni.chatmessageview.ChatMessageView
+        android:id="@+id/chatMessageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        app:cmv_arrowGravity="start"
+        app:cmv_arrowPosition="left"
+        app:cmv_backgroundColor="#42a5f5"
+        app:cmv_backgroundColorPressed="#1e88e5"
+        app:cmv_contentPadding="20dp"
+        app:cmv_cornerRadius="3dp"
+        app:cmv_showArrow="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+    </me.himanshusoni.chatmessageview.ChatMessageView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/chatMessageView"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Arrow Position"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <Button
+                android:id="@+id/btn_arrow_position_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TOP"
+                android:textColor="#fff" />
+
+            <Button
+                android:id="@+id/btn_arrow_position_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="bottom"
+                android:textColor="#fff" />
+
+            <Button
+                android:id="@+id/btn_arrow_position_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="left"
+                android:textColor="#fff" />
+
+            <Button
+                android:id="@+id/btn_arrow_position_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="right"
+                android:textColor="#fff" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Arrow Gravity"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <Button
+                android:id="@+id/btn_arrow_gravity_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="start"
+                android:textColor="#fff" />
+
+            <Button
+                android:id="@+id/btn_arrow_gravity_center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="center"
+                android:textColor="#fff" />
+
+            <Button
+                android:id="@+id/btn_arrow_gravity_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="end"
+                android:textColor="#fff" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
