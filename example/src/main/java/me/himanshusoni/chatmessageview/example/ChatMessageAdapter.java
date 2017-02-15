@@ -13,11 +13,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import me.himanshusoni.chatmessageview.ChatMessageView;
+
 /**
  * Created by himanshusoni on 06/09/15.
- *
  */
 public class ChatMessageAdapter extends RecyclerView.Adapter<ChatMessageAdapter.MessageHolder> {
+    private final String TAG = "ChatMessageAdapter";
     private static final int MY_MESSAGE = 0, OTHER_MESSAGE = 1;
 
     private List<ChatMessage> mMessages;
@@ -56,7 +58,7 @@ public class ChatMessageAdapter extends RecyclerView.Adapter<ChatMessageAdapter.
     }
 
     @Override
-    public void onBindViewHolder(MessageHolder holder, int position) {
+    public void onBindViewHolder(final MessageHolder holder, final int position) {
         ChatMessage chatMessage = mMessages.get(position);
         if (chatMessage.isImage()) {
             holder.ivImage.setVisibility(View.VISIBLE);
@@ -73,15 +75,22 @@ public class ChatMessageAdapter extends RecyclerView.Adapter<ChatMessageAdapter.
         String date = new SimpleDateFormat("hh:mm aa", Locale.getDefault()).format(new Date());
         holder.tvTime.setText(date);
 
+        holder.chatMessageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
     }
 
     class MessageHolder extends RecyclerView.ViewHolder {
         TextView tvMessage, tvTime;
         ImageView ivImage;
+        ChatMessageView chatMessageView;
 
         MessageHolder(View itemView) {
             super(itemView);
+            chatMessageView = (ChatMessageView) itemView.findViewById(R.id.chatMessageView);
             tvMessage = (TextView) itemView.findViewById(R.id.tv_message);
             tvTime = (TextView) itemView.findViewById(R.id.tv_time);
             ivImage = (ImageView) itemView.findViewById(R.id.iv_image);
