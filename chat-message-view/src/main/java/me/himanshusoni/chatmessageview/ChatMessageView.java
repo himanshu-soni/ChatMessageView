@@ -155,12 +155,9 @@ public class ChatMessageView extends RelativeLayout {
             }
             default: {
                 arrowRotation = 0;
-                //arrowParams.addRule(ALIGN_PARENT_RIGHT, TRUE);
-                containerParams.addRule(ALIGN_PARENT_LEFT, TRUE);
+                arrowParams.addRule(ALIGN_PARENT_RIGHT, TRUE);
                 arrowParams.setMargins(0, (int) arrowMargin, 0, (int) arrowMargin);
-
-                //containerParams.addRule(LEFT_OF, arrowImage.getId());
-                arrowParams.addRule(RIGHT_OF, containerLayout.getId());
+                containerParams.addRule(LEFT_OF, arrowImage.getId());
                 break;
             }
         }
