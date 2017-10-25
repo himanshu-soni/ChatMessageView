@@ -76,7 +76,7 @@ Description:
 
 
 
-==================
+----
 developed to make programming easy.
 
 by Himanshu Soni (himanshusoni.me@gmail.com)
